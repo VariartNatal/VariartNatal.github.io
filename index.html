@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            background: rgb(230, 230, 230);
+            display: grid;
+            grid-template-columns: 25px 1fr 25px;
+            grid-template-rows: 25px 350px;
+            width: 100vw;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* table{
+            background: rgb(204, 204, 204);
+            padding: 10px;
+        }
+
+        tr{
+            background: rgb(230, 230, 230);
+        }
+
+        tr:nth-child(2n){
+            background: white;
+        }
+
+        th{
+            background: rgb(26, 26, 26);
+            color: white;
+            padding: 5px;
+        }
+
+        td{
+            padding: 5px;
+        }
+        
+        input{
+            width: 100px;
+            text-align: center;
+        } */
+
+        #item1{
+            background: white;
+            grid-area: 2 / 2 / 3 / 3;
+            display: grid;
+            grid-template: 1fr repeat(5, 50px) 1fr / 25px 1fr 25px;
+            gap: 10px;
+        }
+
+        #material{
+            background: white;
+            grid-area: 2 / 2 / 3 / 3;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            font-size: 1em;
+            font-weight: bolder;
+        }
+
+        #material select{
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+            font-weight: bolder;
+            height: 60%;
+            width: 40%;
+            border-radius: 8px;
+            font-size: 0.8em;
+        }
+
+        #material select#resolucao{
+            width: 10%;
+        }
+
+        #acabamento{
+            background: white;
+            grid-area: 3 / 2 / 4 / 3;
+            border-radius: 15px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        #inserir{
+            background: white;
+            grid-area: 4 / 2 / 5 / 3;
+            border-radius: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 25px 15px;
+        }
+
+        #totais{
+            background: white;
+            grid-area: 5 / 2 / 6 / 3;
+            border-radius: 15px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 15px 15px;
+        }
+
+        #valores{
+            background: white;
+            grid-area: 6 / 2 / 7 / 3;
+            border-radius: 15px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 50px;
+        }
+
+        img{
+            grid-area: 7 / 1 / 8 / 2;
+        }
+
+        .bk{
+            background: black;
+            width: 80%;
+            justify-self: center;
+            align-self: center;
+            padding: 5px;
+            color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .tt{
+            background: black;
+            width: 90%;
+            justify-self: center;
+            align-self: center;
+            text-align: start;
+            padding: 10px;
+            color: white;
+            border-radius: 15px;
+        }
+
+        #vlunit{
+            background-color: white;
+            width: 55%;
+            height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="item1">
+        <div id="material">
+            MATERIAL&nbsp;
+            <select name="materiais" id="materiais">
+                <optgroup label="VINIL">
+                    <option value="promo">VINIL PROMOCIONAL</option>
+
+                    <option value="avery">VINIL AVERY</option>
+
+                    <option value="blackout">VINIL BLACKOUT</option>
+
+                    <option value="transparente">VINIL TRANSPARENTE</option>
+
+                    <option value="fosco">VINIL FOSCO</option>
+
+                    <option value="perfurado">VINIL PERFURADO GF</option>
+                </optgroup>
+
+                <optgroup label="OUTROS">
+                    <option value="lona440">LONA FRONT 440G</option>
+
+                    <option value="outdoor">PAPEL OUTDOOR</option>
+                </optgroup>
+            </select>
+
+            &nbsp;&nbsp;RESOLUÇÃO
+            <select name="resolucao" id="resolucao">
+                <option value="ar">AR</option>
+                <option value="gf">GF</option>
+            </select>
+        </div>
+
+        <div id="acabamento" style="text-align: center;">
+            <div>Acabamento</div>
+            <div>
+                Verniz | 
+                Acab. Banner | 
+                Recorte
+            </div>
+        </div>
+
+        <div id="inserir" style="text-align: center;">
+            <div class="bk">QUANT.</div> <div class="bk">LARGURA</div> <div class="bk">ALTURA</div>
+            <div>3</div> <div>100</div> <div>100</div>
+        </div>
+
+        <div id="totais" style="text-align: center;">
+            <div>M² UNI.</div> <div>M²TOT.</div> <div>VL. M²</div>
+        </div>
+
+        <div id="valores" style="text-align: center;">
+            <div class="tt">VL. UNIT. <div id="vlunit" style="display: inline-block"></div> </div> <div class="tt">VL. TOTAL <div id="vlunit" style="display: inline-block"></div> </div>
+        </div>
+
+        <img src="SISTEMA.jpg" alt="">
+
+
+
+    </div>
+    <!-- <form>
+        <table>
+            <tr>
+                <th colspan="2">ACABAMENTO</th>
+                <th>MATERIAL</th>
+                <th>QUANT.</th>
+                <th>LARGURA</th>
+                <th>ALTURA</th>
+                <th>MT² UNI.</th>
+                <th>MT² TOT.</th>
+                <th>VL. M²</th>
+                <th>VL. UNIT.</th>
+                <th>VL. TOTAL</th>
+            </tr>
+            <tr>
+                <td>Verniz?
+                    <select name="" id="">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                </td>
+
+                <td>Recorte?
+                    <select name="" id="">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                </td>
+
+                <td>
+                    <select name="" id="">
+                        <optgroup label="VINIL">
+                            <option value="promo">VINIL PROMOCIONAL</option>
+                            option
+                            <option value="avery">VINIL AVERY</option>
+                            <option value="blackout">VINIL BLACKOUT</option>
+                            <option value="transparente">VINIL TRANSPARENTE</option>
+                            <option value="fosco">VINIL FOSCO</option>
+                            <option value="perfurado">VINIL PERFURADO GF</option>
+                        </optgroup>
+                        <optgroup label="OUTROS">
+                            <option value="lona440">LONA FRONT 440G</option>
+                            <option value="outdoor">PAPEL OUTDOOR</option>
+                        </optgroup>
+                    </select>
+                    Resolução
+                    <select name="" id="">
+                        <option value="ar">AR</option>
+                        <option value="gf">GF</option>
+                    </select>
+                </td>
+
+                <td>
+                    <input type="number" name="" id="" placeholder="Quantidade">
+                </td>
+
+                <td>
+                    <input type="number" name="" id="" placeholder="Largura">
+                </td>
+
+                <td>
+                    <input type="number" name="" id="" placeholder="Altura">
+                </td>
+
+                <td>
+                    <input type="number" name="" id="" placeholder="MT² Unitário">
+                </td>
+
+                <td>
+                    <input type="number" name="" id="" placeholder="MT² Total">
+                </td>
+
+                <td>
+                    <input type="number" name="" id="" placeholder="Valor M²">
+                </td>
+
+                <td>
+                    <input type="number" name="" id="" placeholder="Valor Unitário">
+                </td>
+
+                <td>
+                    <input type="number" name="" id="" placeholder="Valor Total">
+                </td>
+                
+
+            </tr>
+        </table>
+    </form> -->
+</body>
+
+<script>
+
+</script>
+</html>
