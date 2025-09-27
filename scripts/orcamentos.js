@@ -1,23 +1,25 @@
 const materiais = {
+    "promocional100g": { "ar": 28.00, "gf": 25.00, "verniz": true, "recorte": true, "complemento": "do Vinil Promocional 100G"},
+
+    "promocional120g": { "ar": 32.00, "gf": 30.00, "verniz": true, "recorte": true, "complemento": "do Vinil Promocional 120G"},
+
     "avery": { "ar": 35.00, "gf": 33.00, "verniz": true, "recorte": true, "complemento": "do Vinil Avery"},
 
     "blackout": { "ar": 35.00, "gf": 33.00, "verniz": true, "recorte": true, "complemento": "do Vinil Blackout"},
 
-    "fosco": { "ar": 35.00, "gf": 33.00, "verniz": true, "recorte": true, "complemento": "do Vinil Fosco"},
-
-    "perfurado": { "gf": 35.00, "ar": null, "verniz": false, "recorte": false, "complemento": "do Vinil Perfurado"},
-
-    "promocional": { "ar": 32.00, "gf": 30.00, "verniz": false, "recorte": false, "complemento": "do Vinil Promocional"},
-
     "transparente": { "ar": 38.00, "gf": 35.00, "verniz": false, "recorte": true, "complemento": "do Vinil Transparente"},
 
-    "lona440": { "ar": 35.00, "gf": 32.00, "verniz": true, "recorte": false, "complemento": "da Lona 440g"},
+    "fosco": { "ar": 35.00, "gf": 33.00, "verniz": true, "recorte": true, "complemento": "do Vinil Fosco"},
 
-    "lona340": { "ar": 34.00, "gf": 31.00, "verniz": true, "recorte": false, "complemento": "da Lona 340g"},
+    "perfurado": { "gf": null, "ar": 35.00, "verniz": false, "recorte": false, "complemento": "do Vinil Perfurado"},
 
-    "outdoor": { "gf": 15.00, "tab2": 33.00, "verniz": false, "recorte": false, "complemento": "do Papel Outdoor"},
+    "lona440": { "ar": 35.00, "gf": 32.00, "verniz": true, "recorte": false, "banner": true, "complemento": "da Lona 440g"},
 
-    "acabamentos": { "recorte": 10.00, "verniz": 14.00, "bannerate70cm": 8.00, "bannerate120cm": 10.00, "bannerate145cm": 12.00, "bannerate200cm": 20.00}
+    "lona340": { "ar": 34.00, "gf": 31.00, "verniz": true, "recorte": false, "banner": true, "complemento": "da Lona 340g"},
+
+    "outdoor": { "ar": 15.00, "gf": 15.00, "verniz": false, "recorte": false, "complemento": "do Papel Outdoor"},
+
+    "acabamentos": { "recorte": 10.00, "verniz": 14.00, "bannerate70cm": 8.00, "bannerate120cm": 10.00, "bannerate145cm": 12.00, "bannerate200cm": 20.00, "semacabamentodebanner": 0.00}
     
 };
 
@@ -26,6 +28,8 @@ const ids = {
     resolucao: document.querySelector("#resolucao_opt"),
     verniz: document.querySelector("#boxverniz"),
     recorte: document.querySelector("#boxrecorte"),
+    banner: document.querySelector("#banner"),
+    banner_opt: document.querySelector("#banner_opt"),
     semacabamentos: document.querySelector("#semacabamentos"),
     comverniz: document.querySelector("#verniz"),
     comrecorte: document.querySelector("#recorte"),
@@ -43,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ids.altura.addEventListener("input", calcular);
     ids.largura.addEventListener("input", calcular);
     ids.resolucao.addEventListener("change", calcular);
+    ids.banner_opt.addEventListener("change", calcular);
 
     // primeira renderização
     acabamento();
@@ -54,6 +59,16 @@ function acabamento(){
 
     ids.verniz.style.display = materiais[materialSelecionado].verniz ? "grid" : "none";
     ids.recorte.style.display = materiais[materialSelecionado].recorte ? "grid" : "none";
+    ids.banner.style.display = materiais[materialSelecionado].banner ? "grid" : "none";
+
+    const acabamentoDiv = document.getElementById("acabamento");
+
+    if(materiais[materialSelecionado].banner){
+        acabamentoDiv.style.gridTemplateRows = "20px 70px 50px 10px";
+    } else{
+        acabamentoDiv.style.gridTemplateRows = "10px 0px 1fr 10px";
+    }
+
     ids.semacabamentos.style.display = (materiais[materialSelecionado].verniz || materiais[materialSelecionado].recorte) ? "none" : "grid";
 
     //SE !(NÃO)permite verniz (seleção do "comverniz" muda para não selecionado)
@@ -106,6 +121,11 @@ function calcular(){
     }
 
     let total = quantidade * m2unitario * precom2;
+
+    if(materiais[material].banner){
+        let precoAcabamentoBanner = materiais.acabamentos[ids.banner_opt.value];
+        total += quantidade * precoAcabamentoBanner;
+    }
 
     if(material === "outdoor" && m2total < 1){
         total = 33;

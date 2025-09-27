@@ -17,18 +17,17 @@
                 <label for="material_opt" class="dadotopo">Material: </label>
                 <select name="material_opt" id="material_opt" class="dadobaixo" style="text-align: left; padding-left: 10px">
                     <optgroup label="Lona">
-                        <option value="lona380">Lona 380 GF</option>
-                        <option value="lona440">Lona 440 GF</option>
-                        <option value="lonafront">Lona FrontLight</option>
-                        <option value="lonafosca">Lona Fosca</option>
+                        <option value="lona340">Lona 340g</option>
+                        <option value="lona440">Lona 440g</option>
                     </optgroup>
                     <optgroup label="Vinil">
-                        <option value="avery" selected>Vinil Avery</option>
+                        <option value="promocional100g" selected>Vinil Promocional 100G</option>
+                        <option value="promocional120g" selected>Vinil Promocional 120G</option>
+                        <option value="avery">Vinil Avery</option>
                         <option value="blackout">Vinil Blackout</option>
-                        <option value="espelhado">Vinil Espelhado</option>
+                        <option value="transparente">Vinil Transparente</option>
                         <option value="fosco">Vinil Fosco</option>
                         <option value="perfurado">Vinil Perfurado</option>
-                        <option value="transparente">Vinil Transparente</option>
                     </optgroup>
                     <option value="outdoor">Papel Outdoor</option>
                 </select>
@@ -46,6 +45,18 @@
                 <div id="semacabamentos">
                     Sem Opções de Acabamento
                 </div>
+
+                <div id="banner" style="display: none;">
+                    <label for="banner_opt" class="dadotopobanner">Acabamento Banner? </label>
+                    <select name="banner_opt" id="banner_opt" class="dadobaixobanner" style="text-align: left; padding-left: 10px">
+                        <option value="semacabamentodebanner" selected>Sem Acabamento de Banner</option>
+                        <option value="bannerate70cm">Banner até 70cm (+ R$8,00)</option>
+                        <option value="bannerate120cm">Banner até 120cm (+ R$10,00)</option>
+                        <option value="bannerate145cm">Banner até 145cm (+ R$12,00)</option>
+                        <option value="bannerate200cm">Banner até 200cm (+ R$20,00)</option>
+                    </select>
+                </div>
+
                 <div id="boxverniz">
                     <label for="verniz">Com Verniz?</label>
                     <input type="checkbox" name="verniz" id="verniz">
@@ -55,6 +66,7 @@
                     <label for="recorte">Com recorte?</label>
                     <input type="checkbox" name="recorte" id="recorte">
                 </div>
+
             </div>
 
             <div id="info">
