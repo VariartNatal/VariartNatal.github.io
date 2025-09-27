@@ -54,6 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
     calcular();
 });
 
+function formatarNumero(valor) {
+    // Corrige erro de ponto flutuante e remove zeros desnecessários
+    let arredondado = Math.round(valor * 100) / 100;
+    return arredondado % 1 === 0 ? arredondado.toString() : arredondado.toFixed(2).replace(/\.?0+$/, '');
+}
+
 function acabamento(){
     const materialSelecionado = ids.material.value
 
@@ -104,7 +110,7 @@ function calcular(){
         complemento += ` envernizado`;
         ids.verniz.style.background = "green";
         ids.verniz.style.color = "white";
-        precom2 += 15;
+        precom2 += materiais.acabamentos.verniz;
     } else {
         ids.verniz.style.background = "darkred";
         ids.verniz.style.color = "white";
@@ -114,7 +120,7 @@ function calcular(){
         complemento += ` com recorte`;
         ids.recorte.style.background = "green";
         ids.recorte.style.color = "white";
-        precom2 += 10;
+        precom2 += materiais.acabamentos.recorte;
     } else{
         ids.recorte.style.background = "darkred";
         ids.recorte.style.color = "white";
@@ -128,7 +134,7 @@ function calcular(){
     }
 
     if(material === "outdoor" && m2total < 1){
-        total = 33;
+        total = materiais.outdoor.gf;
     }
 
     if(quantidade !== 1){
@@ -136,5 +142,8 @@ function calcular(){
         fica = "custam";
     }
 
-    ids.resultado.innerHTML = `<textarea>${quantidade} ${uni} ${complemento} no tamanho de ${altura*100}x${largura*100}cm ${fica} R$${total.toFixed(2)}</textarea>`;
+    let alturaFormatada = formatarNumero(altura * 100);
+    let larguraFormatada = formatarNumero(largura * 100);
+
+    ids.resultado.innerHTML = `<textarea>${quantidade} ${uni} ${complemento} no tamanho de ${alturaFormatada}x${larguraFormatada}cm ${fica} R$${total.toFixed(2)}</textarea>`;
 }
